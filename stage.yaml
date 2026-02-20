@@ -1,0 +1,28 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: test
+  namespace: kargo-demo
+spec:
+  promotionTemplate:
+    spec:
+      steps:
+        - as: git-clone
+          config:
+            checkout:
+              - branch: main
+                path: ./src
+            repoURL: ${{ vars.gitRepo }}
+          uses: git-clone
+        - as: custom
+          uses: kyverno-apply-prod
+      vars:
+        - name: gitRepo
+          value: https://github.com/hairyhum/steps-test.git
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: test
+      sources:
+        direct: true
+        stages: []
