@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  generateName: hello
+spec:
+  restartPolicy: Never
+  containers:
+  - name: hello
+    image: ghcr.io/hairyhum/steps-test:user
+    # image: busibox:user
+    command: ['sh', '-c', 'echo "$PATH"; sleep 100']
+

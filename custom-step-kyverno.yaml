@@ -1,0 +1,10 @@
+apiVersion: ee.kargo.akuity.io/v1alpha1
+kind: CustomPromotionStep
+metadata:
+  name: kyverno-apply-prod
+spec:
+  # Container configuration (required)
+  image: ghcr.io/kyverno/kyverno-cli:latest
+  ## Using "sh" to demonstrate variable substitution
+  command: ["/ko-app/kubectl-kyverno", "apply", "policies/prod", "--resources", "resources"]   # Required: executable path
+  args: []                      # Optional: arguments passed to command
