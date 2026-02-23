@@ -30,7 +30,7 @@ spec:
         operator: NotEquals
         value: DELETE
     validate:
-      message: "images with size greater than 2Gi not allowed"  
+      message: "images with size greater than 4Mi not allowed"  
       foreach:
       - list: "request.object.spec.containers"
         context: 
@@ -43,6 +43,6 @@ spec:
         deny:
           conditions:
             all:
-            - key: "2Gi"
+            - key: "4Mi"
               operator: LessThan
               value: "{{imageSize}}"
