@@ -6,7 +6,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: hello
-    image: ghcr.io/hairyhum/steps-test:user
+    image: ghcr.io/hairyhum/steps-test:small
     # image: busibox:user
     command: ['sh', '-c', 'echo "$PATH"; sleep 100']
 

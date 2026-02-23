@@ -16,6 +16,12 @@ spec:
           uses: git-clone
         - as: custom
           uses: kyverno-apply-prod
+          config:
+            image_user: hairyhum
+            image_repo: ghcr.io
+            image_pass: ${{ secret('ghcr-pat') }} 
+            policies_dir: ./src/policies/prod
+            resources_dir: ./src/resources
       vars:
         - name: gitRepo
           value: https://github.com/hairyhum/steps-test.git

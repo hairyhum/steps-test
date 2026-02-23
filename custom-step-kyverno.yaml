@@ -4,7 +4,9 @@ metadata:
   name: kyverno-apply-prod
 spec:
   # Container configuration (required)
-  image: ghcr.io/kyverno/kyverno-cli:latest
+  # image: ghcr.io/kyverno/kyverno-cli:latest
+  image: ghcr.io/hairyhum/steps-test:kyverno
   ## Using "sh" to demonstrate variable substitution
-  command: ["/ko-app/kubectl-kyverno", "apply", "./src/policies/prod", "--resources", "./src/resources", "--registry", "--detailed-results", "--table"]   # Required: executable path
-  args: []                      # Optional: arguments passed to command
+  # command: ["/ko-app/kubectl-kyverno", "apply", "./src/policies/prod", "--resources", "./src/resources", "--registry", "--detailed-results", "--table"]
+  command: ["/kyverno.sh"]
+  args: []                      
