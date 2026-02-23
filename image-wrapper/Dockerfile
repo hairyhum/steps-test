@@ -11,4 +11,8 @@ COPY --from=kcli --chmod=+x /ko-app/kubectl-kyverno /opt/bin/kyverno-cli
 ## Script to run apply
 COPY --chmod=+x kyverno.sh kyverno.sh
 
+## Make sure docker creds are writable
+RUN mkdir .docker
+RUN chmod 777 .docker
+
 

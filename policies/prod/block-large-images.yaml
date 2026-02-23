@@ -11,14 +11,11 @@ metadata:
     kyverno.io/kubernetes-version: "1.23"
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
-      Pods which run containers of very large image size take longer to pull
-      and require more space to store. A user may either inadvertently or purposefully
-      name an image which is unusually large to disrupt operations. This policy
-      checks the size of every container image and blocks if it is over 2 Gibibytes.
+      Not allowing images over 4Mi
 spec:
   validationFailureAction: Audit
   rules:
-  - name: block-over-twogi
+  - name: block-over-4mi
     match:
       any:
       - resources:

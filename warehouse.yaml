@@ -1,15 +1,16 @@
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:
-  name: test
+  name: images
   namespace: kargo-demo
 spec:
   freightCreationPolicy: Automatic
   subscriptions:
   - image:
-      allowTags: v1.9.0
-      cacheByTag: false
+      allowTagsRegexes:
+        - big
+      cacheByTag: true
       discoveryLimit: 20
-      imageSelectionStrategy: SemVer
-      repoURL: ghcr.io/akuity/kargo
-      strictSemvers: true
+      imageSelectionStrategy: Lexical
+      repoURL: ghcr.io/hairyhum/steps-test
+      

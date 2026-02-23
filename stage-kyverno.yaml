@@ -14,12 +14,19 @@ spec:
                 path: ./src
             repoURL: ${{ vars.gitRepo }}
           uses: git-clone
+        - as: update-image
+          uses: yaml-update
+          config:
+            path: ./src/resources/pod.yaml
+            updates:
+              - key: spec.containers.0.image
+                value: ghcr.io/hairyhum/steps-test:${{ imageFrom("ghcr.io/hairyhum/steps-test").Tag }}
         - as: custom
           uses: kyverno-apply-prod
           config:
-            image_user: hairyhum
-            image_repo: ghcr.io
-            image_pass: ${{ secret('ghcr-pat') }} 
+            # image_user: ${{ secret('kargo-demo-repo').username }}
+            # image_repo: ghcr.io
+            # image_pass: ${{ secret('kargo-demo-repo').password }} 
             policies_dir: ./src/policies/prod
             resources_dir: ./src/resources
       vars:
@@ -28,7 +35,7 @@ spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: test
+        name: images
       sources:
         direct: true
         stages: []

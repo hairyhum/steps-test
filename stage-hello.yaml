@@ -1,0 +1,32 @@
+---
+apiVersion: ee.kargo.akuity.io/v1alpha1
+kind: CustomPromotionStep
+metadata:
+  name: hello-world
+spec:
+  # Container configuration (required)
+  image: ubuntu
+  ## Using "sh" to demonstrate variable substitution
+  command: ["sh", "-c", "echo ::kargo::out::world::${CONFIG_WORLD}"]   # Required: executable path
+  args: []                      # Optional: arguments passed to command
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: test-hello
+  namespace: kargo-demo
+spec:
+  promotionTemplate:
+    spec:
+      steps:
+        - as: custom
+          uses: hello-world
+          config:
+            world: value
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: images
+      sources:
+        direct: true
+        stages: []
