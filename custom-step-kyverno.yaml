@@ -8,5 +8,4 @@ spec:
   image: ghcr.io/hairyhum/steps-test:kyverno
   ## Using "sh" to demonstrate variable substitution
   # command: ["/ko-app/kubectl-kyverno", "apply", "./src/policies/prod", "--resources", "./src/resources", "--registry", "--detailed-results", "--table"]
-  command: ["/kyverno.sh"]
-  args: []                      
+  command: ["/kyverno.sh"]       

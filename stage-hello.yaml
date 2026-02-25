@@ -7,8 +7,10 @@ spec:
   # Container configuration (required)
   image: ubuntu
   ## Using "sh" to demonstrate variable substitution
-  command: ["sh", "-c", "echo ::kargo::out::world::${CONFIG_WORLD}"]   # Required: executable path
-  args: []                      # Optional: arguments passed to command
+  command: ["sh", "-c", "echo ::kargo::out::hello::${HELLO}-${CONFIG_WORLD}"]   # Required: executable path
+  env:
+    - name: HELLO
+      value: bonjour
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
