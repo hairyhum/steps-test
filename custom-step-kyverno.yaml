@@ -9,3 +9,15 @@ spec:
   ## Using "sh" to demonstrate variable substitution
   # command: ["/ko-app/kubectl-kyverno", "apply", "./src/policies/prod", "--resources", "./src/resources", "--registry", "--detailed-results", "--table"]
   command: ["/kyverno.sh"]       
+  env:
+    - name: CONFIG_IMAGE_PASS
+      value: ${{ config.image_cred.password }}
+    - name: CONFIG_IMAGE_REPO
+      value: ${{ config.image_repo }}
+    - name: CONFIG_IMAGE_USER
+      value: ${{ config.image_cred.username }}
+    - name: CONFIG_POLICIES_DIR
+      value: ${{ config.policies_dir }}
+    - name: CONFIG_RESOURCES_DIR
+      value: ${{ config.resources_dir }}
+

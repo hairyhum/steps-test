@@ -24,9 +24,8 @@ spec:
         - as: custom
           uses: kyverno-apply-prod
           config:
-            # image_user: ${{ secret('kargo-demo-repo').username }}
-            # image_repo: ghcr.io
-            # image_pass: ${{ secret('kargo-demo-repo').password }} 
+            image_cred: ${{ secret('image_credential') }}
+            image_repo: ghcr.io
             policies_dir: ./src/policies/prod
             resources_dir: ./src/resources
       vars:
